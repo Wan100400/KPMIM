@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        header {
+            background-color: #9c2020;
+            color: rgb(255, 255, 255);
+            padding: 1rem 0;
+            width: 100%; /* Full width */
+        }
+        nav {
+            margin: 1rem 0;
+        }
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #c82323;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #df1b1b;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.5rem 1rem;
+        }
+        th {
+            background-color: #9c2020;
+            color: white;
+        }
+        td {
+            background-color: #fff;
+        }
+        form, table, .button {
+            margin: 1rem auto; /* Centers elements horizontally */
+        }
+        form {
+            text-align: left;
+        }
+        a.button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #9c2020;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a.button:hover {
+            background-color: #c82323;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to KPMIM Website</h1>
+    </header>
+    <body >
+        <h1>Kolej Profesional MARA Indera Mahkota</h1>
+        <h2>COURSE</h2>
+        <form action="" method="POST">
+        {%csrf_token %}
+        Mentor Code <input type="text" name="mentorCd"> <br><br>
+        Mentor Name <input type="text" name="mentorName"><br><br>
+        Mentor Email <input type="text" name="mentorEmail"><br><br>
+        <input type="submit" value="SAVE"><br><br>
+        </form>
+        <br><br>
+        {{message}}
+        <br>
+        <table border="1">
+            <th>Mentor Code</th><th> Mentor Name</th><th>Mentor Email</th>
+        
+            {% for x in allmentor %}
+            <tr>
+                <td>{{ x.mentorCd }}</td>
+                <td>{{ x.mentorName }}</td>
+                <td>{{ x.mentorEmail }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <a href="{% url 'index' %}" class="button">Go to Home Page</a>
+    <section>
+    </section>
+    <footer>
+        <p>&copy; 2025 KPMIM Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

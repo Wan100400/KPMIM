@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #9c2020;
+            color: white;
+            padding: 1rem 0;
+        }
+        nav {
+            margin: 1rem 0;
+        }
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #c82323;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #df1b1b;
+            color: white;
+            padding: 1rem 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        table {
+            width: 80%;
+            margin: 2rem auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+        input[type="submit"] {
+            background-color: #9c2020;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #b52b2b;
+        }
+        .button {
+            display: inline-block;
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #9c2020;
+            border: none;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #b52b2b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Search Course</h1>
+    </header>
+
+    <section>
+        <form action="" method="GET">
+            <label for="c_code"><strong>Enter Course Code:</strong></label><br>
+            <input type="text" name="c_code" id="c_code" placeholder="Enter course code" required><br>
+            <input type="submit" value="SEARCH">
+        </form>
+
+        <br><br>
+        {% if data %}
+            <h3>Search Results:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in data %}
+                        <tr>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.description }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No course found matching the given code.</p>
+        {% endif %}
+        
+        <br><br>
+        <a href="{% url 'index' %}" class="button">Go Back to Home Page</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 KPMIM Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

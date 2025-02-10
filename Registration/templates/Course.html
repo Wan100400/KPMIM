@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page - KPMIM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #9c2020;
+            color: white;
+            padding: 1rem 0;
+            width: 100%;
+        }
+        h1, h2 {
+            margin: 0.5rem 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 50%;
+            text-align: left;
+        }
+        form input[type="text"], form input[type="submit"] {
+            display: block;
+            width: 95%;
+            margin: 0.5rem auto;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form input[type="submit"] {
+            background-color: #9c2020;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #c82323;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1rem 0;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+        }
+        th {
+            background-color: #9c2020;
+            color: white;
+        }
+        td {
+            background-color: #fff;
+        }
+        a.update-button {
+            color: #9c2020;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a.update-button:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #9c2020;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        .button:hover {
+            background-color: #c82323;
+        }
+        footer {
+            background-color: #df1b1b;
+            color: white;
+            padding: 1rem 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to KPMIM Website</h1>
+    </header>
+    
+    <main>
+        <h1>Kolej Profesional MARA Indera Mahkota</h1>
+        <h2>COURSE</h2>
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="code">Course Code</label>
+            <input type="text" name="code" id="code" placeholder="Enter course code" required>
+            
+            <label for="desc">Description</label>
+            <input type="text" name="desc" id="desc" placeholder="Enter course description" required>
+            
+            <input type="submit" value="SAVE">
+        </form>
+        
+        <p>{{ message }}</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in allcourse %}
+                <tr>
+                    <td>{{ x.code }}</td>
+                    <td>{{ x.description }}</td>
+                    <td><a href="{% url 'update_course' x.code %}" class="update-button">Update</a></td>
+                    <td><a href="{% url 'delete_course' x.code %}" class="delete-button">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'index' %}" class="button">Go to Home Page</a>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 KPMIM Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

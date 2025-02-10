@@ -1,0 +1,1 @@
+web : gunicorn KPMIM.wsgi --log-file -
